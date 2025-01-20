@@ -1,0 +1,1 @@
+interface IUploadPreSignedUrlInfo { count: number, preSignedInfos: Array<JSONObject> }
