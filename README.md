@@ -1,3 +1,17 @@
+# 🎬 Video Service API 문서
+
+## 📌 프로젝트 개요
+Video Service는 **비디오 관리 및 주문 자동화 서비스**입니다.  
+사용자는 **비디오를 업로드하고, 주문을 생성하며, 관리할 수 있는 API**를 통해 더 편리하게 서비스를 이용할 수 있습니다.
+
+## 📌 기술 스택
+- **Backend**: TypeScript, Nest.js
+- **Database**: MySQL
+- **Authentication**: JWT
+- **API Docs**: Swagger
+
+---
+
 # 📌 Video Service API 문서
 
 ## 🎬 VideoController
