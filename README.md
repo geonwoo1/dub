@@ -1,26 +1,31 @@
-<<<<<<< HEAD
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# 📌 Video Service API 문서
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## 🎬 VideoController
+| 엔드포인트 | 메서드 | 설명 | 인증 필요 | 요청 파라미터 / 바디 |
+|------------|--------|---------------------------|:--------:|----------------------------------|
+| `/videos/s3/upload-presigned-urls?count={count}` | `GET` | 비디오 업로드용 S3 Presigned URL 제공 | ✅ | `count` (비디오 개수) |
+| `/videos/s3/download-presigned-urls` | `POST` | 비디오 다운로드용 S3 Presigned URL 생성 | ✅ | `{ "s3Keys": [{ "name": "파일명", "s3Key": "파일 경로" }] }` |
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## 👤 UserController
+| 엔드포인트 | 메서드 | 설명 | 인증 필요 | 요청 파라미터 |
+|------------|--------|---------------------------|:--------:|---------------|
+| `/users/{userId}/youtube-channels` | `GET` | 사용자가 접근 가능한 YouTube 채널 리스트 조회 | ✅ | `userId` |
 
-API 서버
+## 📦 OrderController
+| 엔드포인트 | 메서드 | 설명 | 인증 필요 | 요청 파라미터 / 바디 |
+|------------|--------|--------------------------------|:--------:|----------------------------------|
+| `/order-groups` | `GET` | 주문 그룹 리스트 조회 | ✅ | `channelName`, `title`, `channelId`, `status`, `page`, `limit` |
+| `/order-groups/{orderGroupId}/detail` | `GET` | 주문 그룹 상세 조회 | ✅ | `orderGroupId` |
+| `/order-groups` | `POST` | 주문 그룹 생성 | ✅ | `{ "channelId": "string", "videos": [{ "title": "string", "s3Key": "string" }] }` |
+
+## 📌 인증 방식
+- JWT 토큰을 사용하여 인증이 필요합니다.
+- 모든 **✅(인증 필요)** API는 `Authorization: Bearer <token>` 헤더를 포함해야 합니다.
+
+## 📌 응답 예시
+### ✅ 성공
+```json
+{
+  "status": "success",
+  "data": { ... }
+}
